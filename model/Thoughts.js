@@ -27,8 +27,10 @@ reactions:[reactionsSchema]
         id:false
     }
 );
-// thoughtSchema.virtual('ReactionsCount').get(function(){
-//     return reactions.length;
-// })
-const Thoughts=model('thoughts',thoughtSchema);
+
+
+thoughtSchema.virtual('ReactionsCount').get(function(){
+    return this.reactions.length;
+})
+const Thoughts=model('thought',thoughtSchema);
 module.exports=Thoughts
