@@ -1,4 +1,5 @@
-const {Schema,type}=require('mongoose');
+const {Schema,model}=require('mongoose');
+
 const reactionsSchema=require('./Reactions')
 const thoughtSchema=new Schema(
     {
@@ -13,7 +14,8 @@ createdTime:{
     type:Date,
     default:Date.now(),
     get:(date)=>{
-        return date.toLocalDateString()
+        return new Date(date);
+
     }
 },
 reactions:[reactionsSchema]
@@ -25,8 +27,8 @@ reactions:[reactionsSchema]
         id:false
     }
 );
-thoughtSchema.virtual('ReactionsCount').get(function(){
-    return reactions.length;
-})
+// thoughtSchema.virtual('ReactionsCount').get(function(){
+//     return reactions.length;
+// })
 const Thoughts=model('thoughts',thoughtSchema);
 module.exports=Thoughts
